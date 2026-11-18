@@ -110,7 +110,10 @@ export class ResultsCommitsNodeBase<Type extends TreeViewNodeTypes, View extends
 					this,
 					this.view.container.git.getRepository(this.uri.repoPath!)!,
 					{
-						files: this._results.files && { ...this._results.files, direction: this._results.direction },
+						files:
+							this.view.config.showContributorsFiles && this._results.files
+								? { ...this._results.files, direction: this._results.direction }
+								: undefined,
 						icon: false,
 						ref: this._results.comparison?.range,
 						stats: this.view.config.showContributorsStatistics,
