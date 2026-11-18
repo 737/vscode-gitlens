@@ -1,11 +1,6 @@
 import type { GitCommit } from '@gitlens/git/models/commit.js';
 import type { GitFile } from '@gitlens/git/models/file.js';
 
-/**
- * Selects the contributor's files from the comparison's final diff, retaining its statuses and stats.
- * `rangeCommits` must contain the full comparison history, including merges for ancestry, with non-merge files loaded.
- * `workingFiles`, when supplied, describes HEAD-to-working-tree changes and only adjusts file identity.
- */
 export function filterContributorFiles(
 	commits: Iterable<GitCommit>,
 	files: readonly GitFile[],
@@ -43,7 +38,6 @@ export function filterContributorFiles(
 					if (change.status === 'R' && change.originalPath != null) {
 						previousPath = change.originalPath;
 					} else if (change.status === 'A' || change.status === 'C') {
-						// A new or copied file only ends the earlier history on this ancestry branch.
 						continue;
 					}
 				}

@@ -137,7 +137,6 @@ export class ContributorsNode extends CacheableChildrenViewNode<
 			}
 		}
 
-		// Some providers don't include files in multi-commit logs. Never expand a merge's imported files.
 		for (const commit of commits.values()) {
 			if (!commit.isMergeCommit && commit.fileset?.files == null) {
 				await GitCommit.ensureFullDetails(commit);
@@ -205,7 +204,6 @@ export class ContributorsNode extends CacheableChildrenViewNode<
 
 		const svc = this.view.container.git.getRepositoryService(this.uri.repoPath!);
 
-		// If there is no ref and we aren't getting all branches, get the upstream of the current branch if there is one
 		if (rev == null && !all) {
 			try {
 				const branch = await svc.branches.getBranch();
@@ -229,7 +227,6 @@ export class ContributorsNode extends CacheableChildrenViewNode<
 			{
 				all: all,
 				merges: this.options?.showMergeCommits,
-				// Range statistics also make virtual providers return the commits' author identities.
 				stats: this.options?.files != null || (!deferStats && stats),
 			},
 			toAbortSignal(this.view.cancellation),

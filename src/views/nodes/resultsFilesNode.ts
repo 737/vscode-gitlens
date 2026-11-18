@@ -156,8 +156,7 @@ export class ResultsFilesNode extends ViewNode<'results-files', ViewsWithCommits
 				if (files == null) {
 					label = this._options.label ?? l10n.t('files changed');
 					icon = new ThemeIcon('ellipsis');
-					// Need to use Collapsed before we have results or the item won't show up in the view until the children are awaited
-					// https://github.com/microsoft/vscode/issues/54806 & https://github.com/microsoft/vscode/issues/62214
+					// SEE: Loading items need Collapsed to stay visible: microsoft/vscode#54806 and microsoft/vscode#62214.
 					state = TreeItemCollapsibleState.Collapsed;
 
 					void this._filterResults?.then(() => queueMicrotask(() => this.triggerChange(false)));
@@ -181,8 +180,7 @@ export class ResultsFilesNode extends ViewNode<'results-files', ViewsWithCommits
 
 			label = this._options.label ?? l10n.t('files changed');
 			icon = new ThemeIcon('ellipsis');
-			// Need to use Collapsed before we have results or the item won't show up in the view until the children are awaited
-			// https://github.com/microsoft/vscode/issues/54806 & https://github.com/microsoft/vscode/issues/62214
+			// SEE: Loading items need Collapsed to stay visible: microsoft/vscode#54806 and microsoft/vscode#62214.
 			state = TreeItemCollapsibleState.Collapsed;
 		}
 

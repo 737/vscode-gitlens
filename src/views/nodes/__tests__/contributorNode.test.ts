@@ -1,4 +1,3 @@
-// Initialize the command registry through the same entry path as the extension.
 import '../../../container.js';
 import * as assert from 'node:assert';
 import * as sinon from 'sinon';

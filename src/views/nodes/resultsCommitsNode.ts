@@ -120,7 +120,6 @@ export class ResultsCommitsNodeBase<Type extends TreeViewNodeTypes, View extends
 		}
 
 		const { files } = this._results;
-		// Can't support showing files when commits are filtered
 		if (files != null && !this.isComparisonFiltered) {
 			children.push(
 				new ResultsFilesNode(
